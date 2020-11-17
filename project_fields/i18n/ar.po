@@ -1,0 +1,63 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_fields
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-08 10:52+0000\n"
+"PO-Revision-Date: 2020-07-08 12:59+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 2.3.1\n"
+"Last-Translator: \n"
+"Language: ar\n"
+
+#. module: project_fields
+#: model:ir.model,name:project_fields.model_account_analytic_line
+msgid "Analytic Line"
+msgstr ""
+
+#. module: project_fields
+#: model:ir.model.fields.selection,name:project_fields.selection__account_analytic_line__work_type__branching
+msgid "Branching"
+msgstr "تفريعات"
+
+#. module: project_fields
+#: model:ir.model.fields,field_description:project_fields.field_account_analytic_line__description2
+msgid "Description2"
+msgstr "الملاحظات 2"
+
+#. module: project_fields
+#: model:ir.model.fields.selection,name:project_fields.selection__account_analytic_line__work_type__keys
+msgid "Keys"
+msgstr "مفاتيح"
+
+#. module: project_fields
+#: model:ir.model.fields.selection,name:project_fields.selection__account_analytic_line__region__normal
+msgid "Normal"
+msgstr "عادية"
+
+#. module: project_fields
+#: model:ir.model.fields.selection,name:project_fields.selection__account_analytic_line__work_type__path
+msgid "Path"
+msgstr "سكه"
+
+#. module: project_fields
+#: model:ir.model.fields,field_description:project_fields.field_account_analytic_line__region
+msgid "Region"
+msgstr "المنطقة"
+
+#. module: project_fields
+#: model:ir.model.fields.selection,name:project_fields.selection__account_analytic_line__region__remote
+msgid "Remote"
+msgstr "نائيه"
+
+#. module: project_fields
+#: model:ir.model.fields,field_description:project_fields.field_account_analytic_line__work_type
+msgid "Work Type"
+msgstr "نوع العمل"

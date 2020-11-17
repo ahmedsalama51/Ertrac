@@ -1,0 +1,107 @@
+<odoo>
+  <data>
+      <record id="view_external_employee_ekramyat_tree" model="ir.ui.view">
+            <field name="name">hr.screen.tree</field>
+            <field name="model">hr.screen</field>
+            <field name="arch" type="xml">
+                <tree string="External Employee Ekrameyat Tree">
+                    <field name="month"/>
+                    <field name="date"/>
+                    <field name="amount_total" sum="amount_total" optional="show"/>
+                    <field name="net_total" sum="amount_total" optional="show"/>
+                </tree>
+            </field>
+        </record>
+      
+      <record id="view_external_employee_ekramyat_form" model="ir.ui.view">
+            <field name="name">hr.screen.form</field>
+            <field name="model">hr.screen</field>
+            <field name="arch" type="xml">
+                <form string="External Employee">
+                    <sheet>
+                        <group col="4">
+                            <field name="month"/>
+                            <field name="date"/>
+                        </group>
+                        <notebook>
+                            <page string="External Employees">
+                                <field name="external_employee">
+                                  <tree editable="bottom">
+                                      <field name="employee_name"/>
+                                      <field name="department"/>
+                                      <field name="job_position_ex"/>
+                                      <field name="amount" sum="amount" optional="show"/>
+                                      <field name="tax" sum="tax" optional="show"/>
+                                      <field name="net" sum="net" optional="show"/>
+                                      <field name="notes"/>
+                                  </tree>
+                            </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+      
+      <record id="open_module_tree_external_employee" model="ir.actions.act_window">
+            <field name="name">External Employees</field>
+            <field name="res_model">hr.screen</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new External Employee Info
+              </p><p>
+                This is customized to add external employee info on screen to be able to have a documentation of what payment have given to them.
+              </p>
+            </field>
+        </record>
+
+      <menuitem
+                id="hr_menu_external_employee_tree"
+                action="open_module_tree_external_employee"
+                parent="hr.menu_human_resources_configuration"
+                sequence="5"
+                groups="base.group_user"/>
+
+      <record id="view_external_employee_form_field" model="ir.ui.view">
+            <field name="name">external.employee.tree</field>
+            <field name="model">external.employee</field>
+            <field name="arch" type="xml">
+                <tree editable="top"  string="External Employee Form">
+                    <field name="employee_name"/>
+                    <field name="department"/>
+                    <field name="job_position_ex"/>
+                    <field name="amount"/>
+                    <field name="tax"/>
+                    <field name="net"/>
+                    <field name="notes"/>
+                </tree>
+            </field>
+        </record>
+<!--
+      <record id="open_module_tree_external_external_employee" model="ir.actions.act_window">
+            <field name="name">External Employees External</field>
+            <field name="res_model">external.employee</field>
+            <field name="view_mode">tree</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new External Employee Info
+              </p><p>
+                This is customized to add external employee info on screen to be able to have a documentation of what payment have given to them.
+              </p>
+            </field>
+        </record>
+
+      <menuitem
+                id="hr_menu_external_external_employee_tree"
+                action="open_module_tree_external_external_employee"
+                parent="hr.menu_human_resources_configuration"
+                sequence="7"
+                groups="base.group_user"/>
+-->
+  </data>
+</odoo>

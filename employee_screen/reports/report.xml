@@ -1,0 +1,53 @@
+
+<odoo>
+  <data>         
+      <template id="report_external_employees_details">
+        <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div class="oe_structure"/>
+                        <h2>External Employees Report</h2>
+
+                        <div class="row mt32 mb32">
+                                <strong>Date:</strong>
+                                <span t-esc="time.strftime('%Y-%m-%d')"/>
+                        </div>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Month</th>
+                                    <th class="text-center">Employee Name</th>
+                                    <th>Department</th>
+                                    <th>Amount</th>
+                                    <th>Tax</th>
+                                    <th>NET</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                   <t t-foreach="docs" t-as="doc">
+                                        <t t-set="doc" t-value="doc.with_context(lang=user_id.lang)" />
+                                              <tr>
+                                                   <td><span t-field="doc.current_month"/></td>
+                                                   <td><span t-field="doc.external_employee"/></td>
+                                                   <td><span t-field="doc.external_Department"/></td>
+                                                   <td><span t-field="doc.amount"/></td>
+                                                   <td><span t-field="doc.tax"/></td>
+                                                   <td><span t-field="doc.net"/></td>
+                                                   <td><span t-field="doc.notes"/></td>
+                                       </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+    </template>
+         <report id = "external_employees_details_report"
+              string = "External Employees Report"
+              model = "hr.screen"
+              report_type = "qweb-pdf"
+              name = "employee_screen.report_external_employees_details"
+              file = "employee_screen.report_external_employees_details"/>
+  </data>
+</odoo>

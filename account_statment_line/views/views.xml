@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+      <record id="account_statment_line_inh" model="ir.ui.view">
+            <field name="name">account statment line inh</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//page/field/tree/field[@name='ref']" position="before">
+                        <field name="statment_type" />
+                        <field name="doc_no" />
+                    </xpath> 
+            </field>
+      </record>
+  </data>
+</odoo>

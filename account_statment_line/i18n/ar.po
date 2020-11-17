@@ -1,0 +1,58 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* account_statment_line
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0e+e-20191013\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-26 12:46+0000\n"
+"PO-Revision-Date: 2020-06-26 05:49-0700\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 2.3.1\n"
+"Last-Translator: \n"
+"Language: ar\n"
+
+#. module: account_statment_line
+#: model:ir.model,name:account_statment_line.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Bank Statement Line"
+
+#. module: account_statment_line
+#: model:ir.model.fields,field_description:account_statment_line.field_account_bank_statement_line__doc_no
+msgid "Doc No"
+msgstr "رقم الاذن "
+
+#. module: account_statment_line
+#: model:ir.model.fields,field_description:account_statment_line.field_account_bank_statement_line__statment_type
+msgid "Type"
+msgstr "النوع"
+
+#. module: account_statment_line
+#: model:ir.model.fields.selection,name:account_statment_line.selection__account_bank_statement_line__statment_type__adding
+msgid "adding"
+msgstr "توريد"
+
+#. module: account_statment_line
+#: model:ir.model.fields.selection,name:account_statment_line.selection__account_bank_statement_line__statment_type__invoices
+msgid "invoices"
+msgstr "فواتير"
+
+#. module: account_statment_line
+#: model:ir.model.fields.selection,name:account_statment_line.selection__account_bank_statement_line__statment_type__mangment
+msgid "management"
+msgstr "اداري"
+
+#. module: account_statment_line
+#: model:ir.model.fields.selection,name:account_statment_line.selection__account_bank_statement_line__statment_type__organization
+msgid "orgnization"
+msgstr "هيئة"
+
+#. module: account_statment_line
+#: model:ir.model.fields.selection,name:account_statment_line.selection__account_bank_statement_line__statment_type__salary
+msgid "salary"
+msgstr "مرتبات"

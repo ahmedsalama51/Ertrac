@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="employee_view_tax_base_form">
+        <field name="name">hr.payroll.structure.restriction.field.form</field>
+        <field name="model">hr.payroll.structure</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_employee_grade_form"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group[2]/field[@name='schedule_pay']" position="after">
+                <field name="one_per_month"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_provin_city_form_field" model="ir.ui.view">
+            <field name="name">provin.city.mode.tree</field>
+            <field name="model">provin.city.mode</field>
+            <field name="arch" type="xml">
+                <form string="Provin City Form">
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </form>
+            </field>
+    </record>
+    <record id="view_provin_city_form_field_tree" model="ir.ui.view">
+            <field name="name">provin.city.mode.tree</field>
+            <field name="model">provin.city.mode</field>
+            <field name="arch" type="xml">
+                <tree string="Provin city Tree">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="open_module_tree_provin_city" model="ir.actions.act_window">
+            <field name="name">Provin city</field>
+            <field name="res_model">provin.city.mode</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new Provin city
+              </p><p>
+                Create a new Provin city
+              </p>
+            </field>
+        </record>
+
+        <menuitem
+                id="menu_hr_department_tree"
+                action="open_module_tree_provin_city"
+                parent="hr.menu_human_resources_configuration"
+                sequence="7"
+                groups="base.group_user"/>
+  </data>
+</odoo>

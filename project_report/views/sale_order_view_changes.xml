@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="sale_order_form_inherit" model="ir.ui.view">
+            <field name="name">sale.order.form.inherit</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='order_line']//tree" position="inside">
+                    <field name="task_type_id" readonly="1" optional="hide"/>
+<!--                    <field name="region" optional="show"/>-->
+                    <field name="work_type" optional="show"/>
+                    <field name="season_type" optional="show"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="act_order_line" model="ir.actions.act_window">
+            <field name="name">Order Lines</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sale.view_order_line_tree"/>
+        </record>
+        <menuitem id="menu_order_line"
+                  action="act_order_line"
+                  parent="sale.sale_order_menu"
+                  sequence="3" groups="sales_team.group_sale_manager"/>
+
+    </data>
+</odoo>

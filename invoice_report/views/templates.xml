@@ -1,0 +1,286 @@
+<odoo>
+    <data>
+        <template id="report_invoice_document_signatures" inherit_id="account.report_invoice_document">
+        <xpath expr="//t/div[@class='page']/h2" position="replace">
+            <div>
+            <style>
+                *{
+                    direction: rtl;
+                }
+            </style>
+            <h3 align='center'> جاري(<span t-field='o.current'></span>)</h3>
+            <h3 align='center'>سكك حديد مصر - عموم هندسة السكة</h3>
+            <div class="row">
+            <div class="col-4">
+                <pre style='overflow-x: hidden;'>بيان مرفق بفاتورة رقم    \2020 </pre>
+                <p t-field='o.contract'></p>
+            </div>
+            <p class="col-4"></p>
+            <div class="col-4">
+            <strong style='display:block'>مبلغ الاعتماد .....................</strong>
+            <strong style='display:block'>رقم و تاريخ الاعتماد ..................</strong>
+            <strong style='display:block'>قيمة العقد .......................</strong>
+            </div>
+
+            </div>
+            <p t-field='o.narration' align='center'></p>
+            </div>
+        </xpath>
+
+
+        <xpath expr="//t/div[@class='page']/div[@id='informations']" position="replace">
+            <div id="informations" class="row mt32 mb32" style='display:none'>
+                        <div class="col-auto mw-100 mb-2" t-if="o.invoice_date" name="invoice_date">
+                            <strong>Invoice Date:</strong>
+                            <p class="m-0" t-field="o.invoice_date"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.invoice_date_due and o.type == 'out_invoice' and o.state == 'posted'" name="due_date">
+                            <strong>Due Date:</strong>
+                            <p class="m-0" t-field="o.invoice_date_due"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.invoice_origin" name="origin">
+                            <strong>Source:</strong>
+                            <p class="m-0" t-field="o.invoice_origin"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.partner_id.ref" name="customer_code">
+                            <strong>Customer Code:</strong>
+                            <p class="m-0" t-field="o.partner_id.ref"/>
+                        </div>
+                        <div class="col-auto mw-100 mb-2" t-if="o.ref" name="reference">
+                            <strong>Reference:</strong>
+                            <p class="m-0" t-field="o.ref"/>
+                        </div>
+              </div>
+        </xpath>
+
+        <xpath expr="//t/div[@class='page']/p[1]" position="replace"></xpath>
+         <xpath expr="//t/div[@class='page']/p[@name='comment']" position="replace"></xpath>
+         <xpath expr="//p[@name='payment_term']" position="replace"></xpath>
+         <xpath expr="//p[@name='note']" position="replace"></xpath>
+
+        <xpath expr="//t/div[@class='page']/div[@id='informations']" position="after">
+            <div id="narration_view" class="row mt32 mb32">
+            </div>
+
+        </xpath>
+        
+        <xpath expr="//t/div[@class='page']/div[@id='qrcode']" position="after">
+            <div class="row" style='border:none;'>
+                <div class='col-4'>
+                  <p align='right' style='margin-top:20px;'>مندوب الشركة</p>
+                </div>
+                <div class='col-4'>
+                    <p style='font-size:12px;font-weight:bold' align='center'>جميع الاعمال تمت طبقا للاصول الفنية للهيئة</p>
+                </div>
+                <div class='col-4'>
+                    <p align='left' style='margin-top:20px;'>مندوب الهيئة</p>
+                </div>
+            </div>
+            <div align='center'>
+                <p style='margin-left:70px'>يعتمد/ </p>
+                <p>رئيس مجلس الادارة و العضو المنتدب</p>
+                <p>مهندس/ مصطفي عبداللطيف ابوالمكارم</p>
+            </div>
+        </xpath>
+
+        <xpath 
+        expr="//t/div[@class='page']/div[@class='clearfix']" 
+        position="replace">
+        <div id="total" class="row">
+        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                <table></table>
+        </div>
+        </div>
+        </xpath>
+
+
+        <xpath expr="//t/div[@class='page']/table[@name='invoice_line_table']" position="replace">
+        <div class="row" style='margin:0'>
+            <p align='right' class='col-4' style='font-size:10px' >هندسة 207</p>
+            <p class="col-4" style='font-size:10px'></p>
+            <p class="col-4" style='font-size:10px'>مطابع السكك الجديد/2240/1996/2500 (ع)</p>
+        </div>
+        <table class="table table-sm o_main_table table-bordered" name="invoice_line_table">
+               <thead>
+                <tr>
+                <style>
+                    .money{
+                        width:120px;
+                    }
+                </style>
+                    <t t-set="colspan" t-value="6"/>
+                    <th align='center'><p style="margin:0;font-size:15px;" align='center'>رقم بند العقد</p></th> 
+                    <th><p style="margin:0;font-size:15px;width:200px;" align='center'>بيانات مفردات الاعمال</p></th> 
+                    <th><p style="margin:0;font-size:15px;" align='center'>الوحدة</p></th> 
+                    <th><p style="margin:0;font-size:15px;" align='center'>كمية</p></th>
+                    <th>
+                        <p style="margin:0;border-bottom: 1px solid black;" align='center'>الثمن بالوحدة</p>
+                        <p class="row money" style="margin:0">
+                            <p class="col-auto sm" 
+                            style="border-left:1px solid black; padding:0px;display:inline-block;margin:0;width:45px" 
+                            align='right'>
+                            جنية
+                            </p >
+                            <p class="col-auto sm" 
+                            style='padding:1px;display:inline-block;margin:0' align='center'>
+                            قرش
+                            </p>
+                        </p>
+                    </th>  
+                    <th style='width:60px'><p style="margin:0;font-size:14px;width:80px;" align='center'>النسبة</p></th>
+                    <th>                        
+                        <p style="margin:0;border-bottom: 1px solid black;" align='center'>تكاليف كل بند</p>
+                        <p class="row money" style="margin:0">
+                            <p class="col-auto sm" 
+                            style="border-left:1px solid black; padding:0px;display:inline-block;margin:0;width:45px" align='center'>
+                            جنية
+                            </p >
+                            <p class="col-auto sm" 
+                            style='padding:1px;display:inline-block;margin:0' align='center'>
+                            قرش
+                            </p>
+                        </p>
+                    </th> 
+                    <th>
+                       <p style="margin:0;border-bottom: 1px solid black;" align='center'>المبلغ المصرح بصرفه</p>
+                        <p class="row money" style="margin:0">
+                              <p class="col-auto sm" 
+                            style="border-left:1px solid black; padding:0px;display:inline-block;margin:0;width:45px" align='center'>
+                            جنية
+                            </p >
+                            <p class="col-auto sm" 
+                            style='padding:1px;display:inline-block;margin:0' align='center'>
+                            قرش
+                            </p>
+                        </p>
+                    </th>
+                    <th><p style="margin:0;font-size:15px;" align='center'>الملاحظات</p></th>
+                </tr>
+               </thead> 
+               <tbody>
+                <t t-foreach="o.invoice_line_ids" t-as="line">
+                    <t t-set='rate' t-value='round(line.rated * 100)'/>
+                    <t t-if='line.rated != 0' t-set='unit_price' t-value='line.price_unit / line.rated'/>
+                    <t t-if='line.rated == 0' t-set='unit_price' t-value='0'/>
+                    
+                    <tr t-if='not line.display_type'>
+                        <td>
+                            <p t-field='line.product_id.default_code' align='center'/>
+                        </td>
+                        <td>
+                            <p t-field='line.product_id.name' align='center'/>
+                        </td>
+                        <td>
+                            <p align='center' t-field='line.product_uom_id.name'/>
+                        </td>
+                        <td>
+                            <p align='center' t-field='line.quantity'/>
+                        </td>
+                        <td>
+                            <p align='center' t-esc='unit_price'/>
+                        </td>
+                        <td>
+                            <p align='center'> <span>%</span> <span t-esc='rate'/></p>
+                        </td>
+                        <td>
+                            <p align='center' t-field='line.price_subtotal'/>
+                        </td>
+                        <td>
+                            <p align='center' t-field='line.allowed_amount' t-if='line.allowed_amount != 0'/>
+                            <p align='center' t-if='line.allowed_amount == 0'></p>
+                        </td>
+                        <td>
+                            <p align='center' t-field='line.disc'/>
+                        </td>
+                    </tr>
+                    <t t-if="line.display_type == 'line_section' and line.name ==  'خصم ضمان اعمال% 10'">
+                      <tr>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td>
+                             <p align='center'>الاجمالي</p>
+                        </td>
+                        <td></td>
+                        <td>
+                            <p align='center' t-field='o.total_line'/>
+                        </td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                      <tr>
+                        <td></td>
+                         <td>
+                            <p align='right' t-field="line.name"/>
+                        </td> 
+                         <td></td> 
+                         <td></td>
+                         <td></td>
+                         <td>
+                             <p align='center'>10%</p>
+                          </td>
+                         <td>
+                            <p align='center' t-field='o.ten_perc'/>
+                        </td>
+                        <td></td>
+                        <td></td>    
+                     </tr>
+                     <tr>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td></td>
+                         <td>
+                             <p align='center'>الصافي</p>
+                        </td>
+                        <td></td>
+                        <td>
+                            <p align='center' t-field='o.pure'/>
+                        </td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                     
+                    </t>
+                    <tr t-elif="line.display_type == 'line_section'">
+                        <td colspan="99">
+                            <p align='right' t-field="line.name"/>
+                        </td>
+                    </tr>  
+                    <tr>
+                    </tr>
+                </t>
+                   <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>   
+                   <td></td>
+                <td>
+                    <p align='center'><span t-field='o.total_machine_rent'></span></p>
+                </td>
+                <td></td>
+                <td></td>
+                   </tr>
+                <tr>
+                   <td></td>
+                   <td></td>
+                    <td></td>
+                    <td></td>
+                <td>
+                    <p align='center'>صافي المستخلص</p>
+                </td>
+                   <td></td>
+                <td>
+                    <p align='center'><span t-field='o.pure_amount'></span></p>
+                </td>
+                </tr>
+               </tbody>
+        </table>
+            
+        </xpath>
+    </template>
+    </data>
+</odoo>

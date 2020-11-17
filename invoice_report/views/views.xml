@@ -1,0 +1,102 @@
+<odoo>
+  <data>
+      <record model="ir.ui.view" id="view_task_form3_inherited">
+        <field name="name">project.task.custom.ertrac.form</field>
+        <field name="model">project.task</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="before">
+                <field name="machine"/>
+                <field name="region"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="replace">
+                <field name="unit_amount"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/group/group/field[@name='planned_hours']" position="replace">
+                <field name="planned_hours"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/group/group[2]/field[@name='progress']" position="after">
+                <field name="rate_tasks"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/field[@name='timesheet_ids']/tree/field[@name='employee_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/group[3]/group/field[@name='effective_hours']" position="replace">
+                <field name="effective_hours"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/group[3]/group/field[@name='subtask_effective_hours']" position="replace">
+                <field name="subtask_effective_hours"/>
+            </xpath>
+            <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/group[3]/group/field[@name='total_hours_spent']" position="replace">
+                <field name="total_hours_spent"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_order_form_inherit_sale_timesheet_custom">
+        <field name="name">sale.order.custom.ertrac.form</field>
+        <field name="model">sale.order</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='name']" position="after">
+                    <field name="rated"/>
+            </xpath>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_move_form_custom_ertrac">
+        <field name="name">account.move.custom.ertrac.form</field>
+        <field name="model">account.move</field>
+        <field name="priority" eval="1"/>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/notebook/page/field[@name='invoice_line_ids']/tree/field[@name='quantity']" position="before">
+                <field name="rated" readonly="1"/>
+                <field name="rated_once_boolean" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_hr_timesheet_line_pivot_custom" model="ir.ui.view">
+            <field name="name">account.analytic.line.ertrac.custom.pivot</field>
+            <field name="model">account.analytic.line</field>
+            <field name="arch" type="xml">
+                <pivot string="Projects Tasks Report">
+                    <field name="parent_id" type = "row"/>
+                    <field name="child_id" type = "col"/>
+                    <field name="name" type = "row"/>
+                </pivot>
+            </field>
+    </record>
+
+    <record id="view_hr_timesheet_line_pivot_custom_action_cal" model="ir.actions.act_window">
+        <field name="name">Project Tasks Report </field>
+        <field name="res_model">account.analytic.line</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="view_hr_timesheet_line_pivot_custom"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new TimeSheet Entry
+            </p><p>
+                Complete the timesheet of the projects and tasks here
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="timesheet_menu_report_timesheet_by_task_project"
+        name="By Project Task Report"
+        parent="hr_timesheet.menu_timesheets_reports_timesheet"
+        action="view_hr_timesheet_line_pivot_custom_action_cal"
+        sequence="21"/>
+      <!--
+
+        <field name="description" type = "row"/>
+
+        -->
+  </data>
+</odoo>
+

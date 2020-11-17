@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_payslip_salary_structure_pdf_doc">
+        <t t-call="web.external_layout">
+            <div class="page" style="direction:rtl">
+                <h6 class="text-right">القاهره فى : <span t-esc="context_timestamp(datetime.datetime.today()).strftime('%Y-%m-%d')"/></h6>
+                <h2 class="text-right">بيان مفردات مرتب</h2>
+                <h6 class="text-right">إلى من يهمه الأمر,</h6>
+                <h6 class="text-right">
+                    تشهد الشركه المصريه لتجديد وصيانه السكك الحديديه بأن السيد/ <span t-esc="doc.employee_id.name"/>
+                </h6>
+                <h6 class="text-right">
+                    يعمل بالشركه وأن المرتب الشهرى لسيادته كالأتى:
+                </h6>
+                <br/>
+                <!--Main Table-->
+                <div class="row">
+                    <t t-set="total_allowance" t-value="0.0"/>
+                    <t t-set="total_deduction" t-value="0.0"/>
+                    <div class="col-12">
+                        <t t-set="allowance" t-value="doc.line_ids.filtered(lambda l: l.allowance and abs(l.amount) != 0)"/>
+                        <t t-set="deduction" t-value="doc.line_ids.filtered(lambda l: l.deduction and abs(l.amount) != 0)"/>
+                        <t t-set="max_length" t-value="max(len(allowance), len(deduction))"/>
+                        <table class="table" name="pay_raise_line_table" style="direction:rtl;width:50%;float:right">
+                            <thead>
+                                <tr style="background-color:#898a8c">
+                                    <th class="text-center"><span>المبلغ</span></th>
+                                    <th class="text-center"><span>الإستحقاقات</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <tr t-foreach="range(0,max_length)" t-as="line" style="border-bottom:1px black solid">
+                                    <t t-if="line &lt; len(allowance)">
+                                        <td class="text-center" style="height:10px;line-height:10px;"><span t-esc="round(abs(allowance[line].amount),2)"/></td>
+                                        <td class="text-center" style="height:10px;line-height:10px;">
+                                            <span t-if="allowance[line].salary_rule_id.parent_id" t-esc="allowance[line].salary_rule_id.parent_id.name"/>
+                                            <span t-else="" t-esc="allowance[line].salary_rule_id.name"/>
+                                        </td>
+                                        <t t-set="total_allowance" t-value="total_allowance+allowance[line].amount"/>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="height:10px;line-height:10px;"/>
+                                        <td style="height:10px;line-height:10px;"/>
+                                    </t>
+                                </tr>
+                                <tr style="background-color:#898a8c; border-bottom:1px black solid;color:black">
+                                    <th class="text-center"><span t-esc="round(abs(total_allowance),2)"/> </th>
+                                    <th class="text-center"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table" name="pay_raise_line_table" style="direction:rtl;width:50%;float:right">
+                            <thead>
+                                <tr style="background-color:#898a8c">
+                                    <th class="text-center"><span>المبلغ</span></th>
+                                    <th class="text-center"><span>الإستقطاعات</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="invoice_tbody">
+                                <tr t-foreach="range(0, max_length)" t-as="line" style="border-bottom:1px black solid">
+                                    <t t-if="line &lt; len(deduction)">
+                                        <td class="text-center" style="height:10px;line-height:10px;"><span t-esc="round(abs(deduction[line].amount),2)"/></td>
+                                        <td class="text-center" style="height:10px;line-height:10px;">
+                                            <span t-if="deduction[line].salary_rule_id.parent_id" t-esc="deduction[line].salary_rule_id.parent_id.name"/>
+                                            <span t-else="" t-esc="deduction[line].salary_rule_id.name"/>
+                                        </td>
+                                        <t t-set="total_deduction" t-value="total_deduction + deduction[line].amount"/>
+                                    </t>
+                                    <t t-else="">
+                                        <td style="height:10px;line-height:10px;"/>
+                                        <td style="height:10px;line-height:10px;"/>
+                                    </t>
+
+                                </tr>
+                                <tr style="background-color:#898a8c; border-bottom:1px black solid;color:black">
+                                    <th class="text-center"><span t-esc="round(abs(total_deduction),2)"/> </th>
+                                    <th class="text-center"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br/>
+                <!--TOTALS-->
+                <div class="row">
+                    <div class="col-6">
+                        <t t-set="total" t-value="total_allowance + total_deduction "/>
+                        <h5 class="text-right" style="vertical-align:middle">
+                            فقط وقدره <span t-esc="doc.currency_id.with_context(lang='ar_SY').amount_to_text(total)" />
+                        </h5>
+                    </div>
+                    <div class="col-1"/>
+                    <div class="col-5">
+                        <table class="table table-condensed" style="direction:rtl;width:100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th><span t-esc="round(abs(total_allowance),2)"/> </th>
+                                    <th>إجمالى الإستحقاقات</th>
+                                </tr>
+                                <tr>
+                                    <th><span t-esc="round(abs(total_deduction),2)"/> </th>
+                                    <th>إجمالى الإستقطاعات</th>
+                                </tr>
+                                <tr>
+                                    <th><span t-esc="round(abs(total),2)"/></th>
+                                    <th>الصافى</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!--text-->
+                <br/>
+                <div class="row">
+                    <div class="col-2"/>
+                    <div class="col-8">
+                        <h6 class="text-center">علماً بأن المذكور محول مرتبه على بنك مصر فرع المعاملات الدوليه</h6>
+                        <h6 class="text-center">وهذه شهاده من الشركه دون أدنى مسئوليه على الشركه,,,</h6>
+                    </div>
+                </div>
+                <br/>
+                <!-- Signature-->
+                <div class="row text-center" name="signature" style="direction:rtl">
+                    <div class="col-8"/>
+                    <div class="col-4">
+                        <h5>مـديـر إداره المـوارد البـشريه</h5>
+                        <br/>
+                        <p>----------------------------------</p>
+                    </div>
+
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="report_payslip_salary_structure_pdf">
+        <t t-set="full_width" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-set="lang" t-value="user.partner_id.lang"/>
+                <t t-call="egymentors_hr.report_payslip_salary_structure_pdf_doc" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>

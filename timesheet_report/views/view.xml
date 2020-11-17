@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_task_form4_inherited">
+            <field name="name">project.task.custom.ertrac.form.view</field>
+            <field name="model">project.task</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/sheet/notebook/page[@id='timesheets_tab']/field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="before">
+                    <field name="line_type"/>
+                    <field name="from_km"/>
+                    <field name="to_km"/>
+                    <field name="total_km"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+    <record id="hr_equipment_request_view_tree_custom2" model="ir.ui.view">
+            <field name="name">maintenance.request.custom.tree</field>
+            <field name="model">maintenance.request</field>
+            <field name="arch" type="xml">
+                <tree string="Maintenance Requests Lists" editable="top">
+                    <field name="name"/>
+                    <field name="request_date"/>
+                    <field name="equipment_id"/>
+                    <field name="used_location"/>
+                    <field name="employee_id_custom"/>
+                    <field name="description"/>
+                    <field name="quantity_equipment"/>
+                    <field name="company_id" readonly="1" groups="base.group_multi_company"/>
+                    <field name="repair_id"/>
+                    <field name="stage_id" readonly="True"/>
+                </tree>
+            </field>
+    </record>
+    <record id="hr_equipment_request_action_cal_2" model="ir.actions.act_window">
+        <field name="name">Maintenance Requests Lists</field>
+        <field name="res_model">maintenance.request</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="hr_equipment_request_view_tree_custom2"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Add a new maintenance request
+            </p><p>
+                Follow the process of the request and communicate with the collaborator.
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="maintenance_request_repair_form">
+        <field name="name">maintenance.request.repair.form</field>
+        <field name="model">maintenance.request</field>
+        <field name="inherit_id" ref="maintenance.hr_equipment_request_view_form"/>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/sheet/group/group[2]/field[@name='company_id']" position="after">
+                <field name="repair_id"/>
+                <field name="quantity_equipment"/>
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_m_request_list_custom"
+        name="Maintenance Requests Lists"
+        parent="maintenance.menu_m_request"
+        action="hr_equipment_request_action_cal_2"
+        sequence="3"/>
+
+
+    </data>
+</odoo>
+
+<!--
+        groups="maintenance.group_equipment_manager,base.group_user"
+        -->

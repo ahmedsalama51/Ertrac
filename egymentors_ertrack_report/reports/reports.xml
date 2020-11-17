@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <report
+                id="task_ertrack_report"
+                model="project.task"
+                string="محضر الحصر(Excel)"
+                report_type="xlsx"
+                name="egymentors_ertrack_report.report_task_ertrack"
+                file="egymentors_ertrack_report.report_task_ertrack"
+                attachment_use="False"
+        />
+    </data>
+</odoo>

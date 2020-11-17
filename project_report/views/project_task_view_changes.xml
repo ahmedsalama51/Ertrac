@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Task View-->
+        <record id="view_task_form2_inherit" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="task_header_id"
+                           attrs="{'invisible':[('child_ids','=',[])],
+                           'required':[('child_ids','!=',[])]}"/>
+                    <field name="report_description"/>
+                    <field name="task_type_id"/>
+                    <field name="season_type"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_task_tree2_inherit" model="ir.ui.view">
+            <field name="name">project.task.tree.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_tree2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='project_id']" position="after">
+                    <field name="task_type_id" optional="show"/>
+                    <field name="season_type" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_task_search_inherit" model="ir.ui.view">
+            <field name="name">project.task.search.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_search_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="before">
+                    <separator/>
+                    <filter string="Is Parent Task?" name="is_parent" domain="[('parent_id', '=', False)]"/>
+                    <filter string="Is Child Task?" name="is_child" domain="[('parent_id', '!=', False)]"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <separator/>
+                    <filter name="task_type_id" string="Task Type" context="{'group_by':'task_type_id'}"/>
+                    <filter name="season_type" string="الموسم" context="{'group_by':'season_type'}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- timesheet line view-->
+        <record id="ertrac_view_task_form2_inherited" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='timesheet_ids']" position="attributes">
+                    <attribute name="context">{'default_project_id': project_id,
+                        'default_task_type_id': task_type_id,
+                        'default_name':''}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='timesheet_ids']//tree" position="inside">
+                    <field name="task_type_id" optional="show"/>
+                    <field name="season_type" optional="show"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="hr_timesheet_line_search_inherit" model="ir.ui.view">
+            <field name="name">account.analytic.line.search.inherit</field>
+            <field name="model">account.analytic.line</field>
+            <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <separator/>
+                    <filter name="task_type_id" string="Task Type" context="{'group_by':'task_type_id'}"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

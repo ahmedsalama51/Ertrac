@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_task_header_user,fx.number user,model_project_task_header,project.group_project_user,1,1,1,1
+access_project_task_header_manager,fx.number manager,model_project_task_header,project.group_project_manager,1,1,1,1
+access_project_task_header_portal,fx.number,model_project_task_header,base.group_portal,1,0,0,0
+access_project_task_header_line_user,fx.number user,model_project_task_header_line,project.group_project_user,1,1,1,1
+access_project_task_header_line_manager,fx.number manager,model_project_task_header_line,project.group_project_manager,1,1,1,1
+access_project_task_header_line_portal,fx.number,model_project_task_header_line,base.group_portal,1,0,0,0
+access_ertrac_project_task_type_user,fx.number user,model_ertrac_project_task_type,project.group_project_user,1,1,1,1
+access_ertrac_project_task_type_manager,fx.number manager,model_ertrac_project_task_type,project.group_project_manager,1,1,1,1
+access_ertrac_project_task_type_portal,fx.number,model_ertrac_project_task_type,base.group_portal,1,0,0,0
+access_work_progress_report,work_progress_report,model_work_progress_report,,1,1,1,1
+access_sale_order_line_public,sale.order.line.public,model_sale_order_line,,1,0,0,0
+access_sale_order_line_full,sale.order.line.full,model_sale_order_line,sales_team.group_sale_manager,1,1,1,1

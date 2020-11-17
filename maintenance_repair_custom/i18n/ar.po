@@ -1,0 +1,131 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* maintenance_repair_custom
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0e+e-20191013\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-09 11:35+0000\n"
+"PO-Revision-Date: 2020-04-09 13:38+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 2.2.4\n"
+"Last-Translator: \n"
+"Language: ar\n"
+
+#. module: maintenance_repair_custom
+#: model_terms:ir.actions.act_window,help:maintenance_repair_custom.hr_equipment_request_action_cal_2
+msgid "Add a new maintenance request"
+msgstr "إضافة طلب صيانة جديد"
+
+#. module: maintenance_repair_custom
+#: model_terms:ir.ui.view,arch_db:maintenance_repair_custom.view_validate_request
+msgid "Cancel"
+msgstr "إلغاء"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_maintenance_request__company_id
+msgid "Company"
+msgstr "الشركة"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: maintenance_repair_custom
+#: model_terms:ir.ui.view,arch_db:maintenance_repair_custom.view_validate_request
+msgid "Do you really want to validate the selected invoices(s)?"
+msgstr "هل تريد حقًا التحقق من صحة الفواتير (الفواتير) المحددة؟"
+
+#. module: maintenance_repair_custom
+#: model:maintenance.stage,name:maintenance_repair_custom.stage_-1
+msgid "Draft"
+msgstr "مسودة"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_maintenance_request__employee_id_custom
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: maintenance_repair_custom
+#: model_terms:ir.actions.act_window,help:maintenance_repair_custom.hr_equipment_request_action_cal_2
+msgid "Follow the process of the request and communicate with the collaborator."
+msgstr ""
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__id
+msgid "ID"
+msgstr ""
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_validation_requests__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_maintenance_request__used_location
+msgid "Location"
+msgstr "المكان"
+
+#. module: maintenance_repair_custom
+#: model:ir.model,name:maintenance_repair_custom.model_maintenance_request
+msgid "Maintenance Request"
+msgstr ""
+
+#. module: maintenance_repair_custom
+#: model:ir.actions.act_window,name:maintenance_repair_custom.hr_equipment_request_action_cal_2
+#: model:ir.ui.menu,name:maintenance_repair_custom.menu_m_request_list_custom
+#: model_terms:ir.ui.view,arch_db:maintenance_repair_custom.hr_equipment_request_view_tree_custom2
+msgid "Maintenance Requests Lists"
+msgstr "تقرير أوامر الصيانه"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_maintenance_request__quantity_equipment
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: maintenance_repair_custom
+#: model:ir.model.fields,field_description:maintenance_repair_custom.field_maintenance_request__repair_id
+msgid "Repair"
+msgstr "صيانة"
+
+#. module: maintenance_repair_custom
+#: model_terms:ir.ui.view,arch_db:maintenance_repair_custom.view_validate_request
+msgid "Validate"
+msgstr "تحقيق"
+
+#. module: maintenance_repair_custom
+#: model:ir.actions.act_window,name:maintenance_repair_custom.validation_action_request_record
+#: model_terms:ir.ui.view,arch_db:maintenance_repair_custom.view_validate_request
+msgid "Validate Requests"
+msgstr "تقرير أوامر الصيانه"
+
+#. module: maintenance_repair_custom
+#: model:ir.model,name:maintenance_repair_custom.model_validation_requests
+msgid "validation.requests"
+msgstr ""

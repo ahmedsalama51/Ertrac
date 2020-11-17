@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="project_task_type_1" model="ertrac.project.task.type">
+            <field name="name">تجديد سكة</field>
+            <field name="code">0001</field>
+        </record>
+        <record id="project_task_type_2" model="ertrac.project.task.type">
+            <field name="name">صيانه سكه طوالى</field>
+            <field name="code">0002</field>
+        </record>
+        <record id="project_task_type_3" model="ertrac.project.task.type">
+            <field name="name">اعمال تجديدات السك الطوالى</field>
+            <field name="code">0003</field>
+        </record>
+        <record id="project_task_type_4" model="ertrac.project.task.type">
+            <field name="name">اعمال تجديد احواش ومحطات</field>
+            <field name="code">0004</field>
+        </record>
+
+    </data>
+</odoo>

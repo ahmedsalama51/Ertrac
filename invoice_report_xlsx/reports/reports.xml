@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <report
+                id="invoice_ertrack2_report"
+                model="account.move"
+                string="مستخلص xlsx"
+                report_type="xlsx"
+                name="report_invoice_ertrac.report_invoice_ertrac"
+                file="report_invoice_ertrac.report_invoice_ertrac"
+                attachment_use="False"
+        />
+</odoo>

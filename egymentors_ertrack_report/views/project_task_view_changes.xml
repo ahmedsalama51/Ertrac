@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Task Header -->
+        <menuitem id="project_task_header_root" name="Task Header"
+                  parent="project.menu_project_config" sequence="22"/>
+        <record id="project_task_header_form_view" model="ir.ui.view">
+            <field name="name">project.task.header.form.view</field>
+            <field name="model">project.task.header</field>
+            <field name="arch" type="xml">
+                <form string="Task Header">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group colspan="2">
+                                <label for="previous"/>
+                                <div class="o_row">
+                                    <field name="previous" nolabel="1" class="oe_inline"/>
+                                    <span style="color:#008784" class="oe_inline">%</span>
+                                </div>
+                                <label for="new"/>
+                                <div class="o_row">
+                                    <field name="new" nolabel="1" class="oe_inline"/>
+                                    <span style="color:#008784" class="oe_inline">%</span>
+                                </div>
+                                <label for="total"/>
+                                <div class="o_row">
+                                    <field name="total" nolabel="1" class="oe_inline oe_subtotal_footer_separator"/>
+                                    <span style="color:#008784" class="oe_inline">%</span>
+                                </div>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="line_ids" >
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="percent" sum="total"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="project_task_header_tree_view" model="ir.ui.view">
+            <field name="name">project.task.header.tree.view</field>
+            <field name="model">project.task.header</field>
+            <field name="arch" type="xml">
+                <tree string="Task Header">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="act_project_task_header" model="ir.actions.act_window">
+            <field name="name">Task Header</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">project.task.header</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Add New Task Header
+                </p>
+            </field>
+        </record>
+        <menuitem id="project_task_header" name="Headers"
+                  action="act_project_task_header"
+                  parent="project_task_header_root" sequence="1"/>
+
+        <!--Task View-->
+        <record id="view_task_form2_inherit" model="ir.ui.view">
+            <field name="name">project.task.form.inherit</field>
+            <field name="model">project.task</field>
+            <field name="inherit_id" ref="project.view_task_form2"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="task_header_id"
+                           attrs="{'invisible':[('child_ids','=',[])],
+                           'required':[('child_ids','!=',[])]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

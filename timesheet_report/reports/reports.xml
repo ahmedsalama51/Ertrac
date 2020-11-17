@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <report
+                id="task_ertrack2_report"
+                model="project.task"
+                string="محضر حصر أعمال"
+                report_type="xlsx"
+                name="report_timesheet_ertrac.report_task2_ertrac"
+                file="report_timesheet_ertrac.report_task2_ertrac"
+                attachment_use="False"
+        />
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="work_progress_report_wizard_form" model="ir.ui.view">
+        <field name="name">تقرير تقدم العمل بالتجديدات</field>
+        <field name="model">work_progress_report</field>
+        <field name="arch" type="xml">
+            <form string="تقارير الشركه المصريه">
+                <group>
+                    <group string="الفتره الزمنيه" class="text-info">
+                        <label for="year" string="عن فتره"/>
+                        <div class="o_row">
+                            <field name="month" placeholder="شهر"/>
+                            <field name="year" placeholder="سنه"/>
+                            <field name="year2" placeholder="سنه 2" attrs="{'required':[('report_type','=','report_7')],
+                            'invisible':[('report_type','!=','report_7')]}"/>
+                        </div>
+                        <label for="from_date" string="عن تاريخ"/>
+                        <div class="o_row">
+                            <field name="from_date" placeholder="من"
+                                   attrs="{'required':['|',('year','!=',False),('month','!=',False)]}"/>
+                            <field name="to_date" placeholder="إلى"
+                                   attrs="{'required':['|',('year','!=',False),('month','!=',False)]}"/>
+                        </div>
+                    </group>
+                    <group class="text-success">
+                        <field name="report_type" widget="radio" string="التقرير"/>
+                    </group>
+
+
+                </group>
+                <group string="الأقسام" class="text-danger">
+                        <field name="task_type_ids" string="نوع المهمه" widget="many2many_tags" required="1"/>
+                </group>
+
+                <footer>
+                    <button name="print_report" type="object" string="طباعه" class="oe_highlight"
+                            default_focus="1"/>
+                    <button string="Close" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_work_progress_report_wizard" model="ir.actions.act_window">
+        <field name="name">تقارير الشركه المصريه</field>
+        <field name="res_model">work_progress_report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="work_progress_report_wizard_form"/>
+    </record>
+
+    <menuitem id="work_progress_report_wizard_menu"
+              name="تقارير الشركه المصريه"
+              parent="hr_timesheet.menu_timesheets_reports"
+              sequence="101"
+              action="action_work_progress_report_wizard"
+    />
+</odoo>

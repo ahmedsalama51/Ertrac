@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_task_ertrack_report" model="ir.actions.server">
+        <field name="name">محضر الحصر</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_project_task"/>
+        <field name="state">code</field>
+        <field name="code">
+            action = model.print_report()
+        </field>
+    </record>
+
+    <!--Menu to Print Sale Report-->
+
+    <menuitem id="menu_task_ertrack_report"  parent="hr_timesheet.menu_timesheets_reports"
+              sequence="110" action="action_task_ertrack_report"/>
+
+</odoo>

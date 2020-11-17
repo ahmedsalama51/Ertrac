@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!--Type 1-->
+        <record id="project_task_header_1" model="project.task.header">
+            <field name="name">تجديد السكك باحواش المحطات</field>
+        </record>
+
+        <record id="project_task_header_1_line_1" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">فج السكة</field>
+            <field name="percent">20</field>
+        </record>
+
+        <record id="project_task_header_1_line_2" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">تجميع السكة االجديدة باحواش التجميع</field>
+            <field name="percent">9</field>
+        </record>
+
+        <record id="project_task_header_1_line_3" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">رفع السكة القديمة</field>
+            <field name="percent">10</field>
+        </record>
+
+        <record id="project_task_header_1_line_4" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">وضع السكة الجديدة</field>
+            <field name="percent">7</field>
+        </record>
+
+        <record id="project_task_header_1_line_5" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">تشكيل البازلت ودك السكة على مراحل</field>
+            <field name="percent">16</field>
+        </record>
+
+        <record id="project_task_header_1_line_6" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">صيانة خلفية - دكة نهائية</field>
+            <field name="percent">12</field>
+        </record>
+
+        <record id="project_task_header_1_line_7" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">ترحيل وفك الناتج</field>
+            <field name="percent">6</field>
+        </record>
+
+        <record id="project_task_header_1_line_8" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">فرز وتستيف ناتج السكة</field>
+            <field name="percent">6</field>
+        </record>
+
+        <record id="project_task_header_1_line_9" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">استبدال القضبان القياسية باخرى ملحومة</field>
+            <field name="percent">7</field>
+        </record>
+
+        <record id="project_task_header_1_line_10" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_1"/>
+            <field name="name">لحام وتخليص السكة من الاجهادات</field>
+            <field name="percent">7</field>
+        </record>
+<!-- Type 2-->
+        <record id="project_task_header_2" model="project.task.header">
+            <field name="name">تجديد مفتاح</field>
+        </record>
+
+        <record id="project_task_header_2_line_1" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">ارنكة المفتاح خارج الموقع</field>
+            <field name="percent">12</field>
+        </record>
+
+        <record id="project_task_header_2_line_2" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">رفع المفتاح القديم</field>
+            <field name="percent">10</field>
+        </record>
+
+        <record id="project_task_header_2_line_3" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">شحن ونقل الناتج</field>
+            <field name="percent">3</field>
+        </record>
+
+        <record id="project_task_header_2_line_4" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">حل وفرز وتشوين الناتج</field>
+            <field name="percent">7</field>
+        </record>
+
+        <record id="project_task_header_2_line_5" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">فج موقع المفتاح</field>
+            <field name="percent">16</field>
+        </record>
+
+        <record id="project_task_header_2_line_6" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">نقل وتركيب المفتاح الجديد بالموقع</field>
+            <field name="percent">14</field>
+        </record>
+
+        <record id="project_task_header_2_line_7" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">تزليط ودك المفتاح على مراحل</field>
+            <field name="percent">22</field>
+        </record>
+
+        <record id="project_task_header_2_line_8" model="project.task.header.line">
+            <field name="header_id" eval="project_task_header_2"/>
+            <field name="name">صيانة خلفية - دكة نهائية</field>
+            <field name="percent">16</field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

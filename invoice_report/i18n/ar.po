@@ -1,0 +1,238 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* project_ertrac
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0e+e-20191013\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-29 11:26+0000\n"
+"PO-Revision-Date: 2020-06-29 04:34-0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: ar\n"
+"X-Generator: Poedit 2.3.1\n"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid ""
+"<span class=\"col-auto sm\" style=\"border-right:1px solid black; padding:1px;\">pounds</"
+"span>\n"
+"                            <span class=\"col-auto sm\" style=\"padding:1px\">cents</span>"
+msgstr ""
+"<span class=\"col-auto sm\" style=\"border-right:1px solid black; padding:1px;\">جنيه</"
+"span>\n"
+"                            <span class=\"col-auto sm\" style=\"padding:1px\">قرش</span>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<span>KM</span>"
+msgstr "<span>كم</span>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid ""
+"<strong style=\"display:block\">mabl8 w e3tmad .....................</strong>\n"
+"            <strong style=\"display:block\">rakm w tare5 ele3tmad ..................</"
+"strong>\n"
+"            <strong style=\"display:block\">qemat el3a2d .......................</strong>"
+msgstr ""
+"<strong style=\"display:block\">مبلغ الاعتماد .....................</strong>\n"
+"            <strong style=\"display:block\">رقم و تاريخ الاعتماد ..................</"
+"strong>\n"
+"            <strong style=\"display:block\">قيمة العقد .......................</strong>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<strong>Customer Code:</strong>"
+msgstr "<strong>كود العميل:</strong>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<strong>Due Date:</strong>"
+msgstr "<strong>تاريخ الاستحقاق:</strong>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<strong>Invoice Date:</strong>"
+msgstr "<strong>تاريخ الفاتورة:</strong>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<strong>Reference:</strong>"
+msgstr "<strong>رقم الإشارة:</strong>"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "<strong>Source:</strong>"
+msgstr "<strong>المصدر:</strong>"
+
+#. module: project_ertrac
+#: model:ir.model,name:project_ertrac.model_account_analytic_line
+msgid "Analytic Line"
+msgstr "البند التحليلي"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "CEO"
+msgstr "رئيس مجلس الإدارة و العضو المنتدب "
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_analytic_line__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: project_ertrac
+#: model:ir.model.fields,help:project_ertrac.field_project_task__planned_hours
+msgid ""
+"It is the time planned to achieve the task. If this document has sub-tasks, it means the "
+"time needed to achieve this tasks and its childs."
+msgstr ""
+"وقد حان الوقت المقرر لتحقيق هذه المهمة. إذا كان هذا المستند يحتوي على مهام فرعية، فهذا "
+"يعني الوقت اللازم لتحقيق هذه المهام والمهام التابعة لها."
+
+#. module: project_ertrac
+#: model:ir.model,name:project_ertrac.model_account_move
+msgid "Journal Entries"
+msgstr "القيود اليومية"
+
+#. module: project_ertrac
+#: model:ir.model,name:project_ertrac.model_account_move_line
+msgid "Journal Item"
+msgstr "عنصر اليومية"
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_analytic_line__machine
+msgid "Machine"
+msgstr "ماكينة"
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_analytic_line__unit_amount
+#: model:ir.model.fields,field_description:project_ertrac.field_project_task__planned_hours
+msgid "Quantity"
+msgstr "الكمية"
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_move_line__rated
+#: model:ir.model.fields,field_description:project_ertrac.field_sale_order_line__rated
+msgid "Rate"
+msgstr "المعدل"
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_analytic_line__region
+msgid "Region"
+msgstr "المنطقة"
+
+#. module: project_ertrac
+#: model:ir.model,name:project_ertrac.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "بند أمر المبيعات"
+
+#. module: project_ertrac
+#: model:ir.model.fields,field_description:project_ertrac.field_account_move__short_date
+msgid "Short Date"
+msgstr "تاريخ"
+
+#. module: project_ertrac
+#: model:ir.model,name:project_ertrac.model_project_task
+msgid "Task"
+msgstr "المهمة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "Unit"
+msgstr "الوحدة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "all works"
+msgstr "جميع الاعمال تمت طبقا للأصول الفنية للهيئة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "allowed amount"
+msgstr "المبلغ المصرح بصرفه "
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "byan fatora/"
+msgstr "بيان مرفق بفاتورة رقم "
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "company agent"
+msgstr "مندوب الشركة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "engieer/"
+msgstr "مهندس /"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "handsa 207"
+msgstr "هندسة 207"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "internal refernce"
+msgstr "رقم بند العقد"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "matab3 seka 7aded"
+msgstr "مطابع السكك الحديد /2240 /1996 /25000 (ع)"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "notes"
+msgstr "ملاحظات"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "organization agent"
+msgstr "مندوب الهيئة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "product name"
+msgstr "بيانات مفردات الاعمال"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "quantity"
+msgstr "الكمية"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "rate"
+msgstr "النسبة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "sekak 7adeed masr - 3omom handsa elseka"
+msgstr "سكك حديد مصر - عموم هندسة السكة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "subtotal"
+msgstr "تكاليف كل بند"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "tebqan lel3aqd rakam (  ) lesanat"
+msgstr "طبقا للعقد رقم (    )   لسنة  "
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "unit price"
+msgstr "الثمن بالوحدة"
+
+#. module: project_ertrac
+#: model_terms:ir.ui.view,arch_db:project_ertrac.report_invoice_document_signatures
+msgid "ya3tmd/"
+msgstr "يعتمد / "

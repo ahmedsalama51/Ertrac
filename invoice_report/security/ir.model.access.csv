@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_project_ertrac_project_ertrac,project_ertrac.project_ertrac,model_project_ertrac_project_ertrac,base.group_user,1,1,1,1
