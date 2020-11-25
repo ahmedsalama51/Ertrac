@@ -5,9 +5,13 @@
 <!--            <t t-set="o" t-value="o.with_context(lang=lang)" />-->
             <div class="page text-right" style="text-align: right !important;direction:rtl">
                 <div class="row" >
-                    <div class="col-4" t-if="o.name" name="date">
+                    <div class="col-4" t-if="o.name" name="name">
                         <strong>رقم طلب الشراء</strong>
                         <span class="m-0" t-field="o.name"/>
+                    </div>
+                    <div class="col-4" t-if="o.req_dep_id" name="req_dep_id">
+                        <strong>الجهه الطالبه</strong>
+                        <span class="m-0" t-field="o.req_dep_id.name"/>
                     </div>
                     <div class="col-4" t-if="o.date_request" name="period_month">
                         <strong> التاريخ</strong>
@@ -31,7 +35,6 @@
                         </b>
                     </div>
                 </div>
-                <br/>
                 <br/>
                 <div class="row" >
                     <div class="col-12" >
@@ -112,20 +115,20 @@
                 <br/>
                 <br/>
                 <div class="row"  >
-                    <div class="col-3 text-center">
-                        <strong>مسئول الفحص</strong>
-                    </div>
-                    <div class="col-2 text-center">
-                        <strong>مهندس القسم</strong>
-                    </div>
-                    <div class="col-3 text-center">
-                        <strong>مسئول المخزن</strong>
-                    </div>
                     <div class="col-2 text-center">
                         <strong>مهندس الورشه</strong>
                     </div>
                     <div class="col-2 text-center">
                         <strong>مدير الورشه</strong>
+                    </div>
+                    <div class="col-3 text-center">
+                        <strong>مسئول المخزن</strong>
+                    </div>
+                    <div class="col-2 text-center">
+                        <strong>مراقب المخزون</strong>
+                    </div>
+                    <div class="col-3 text-center">
+                        <strong>مسئول المراجعه / الفحص</strong>
                     </div>
                 </div>
                 <br/><br/>
