@@ -1,24 +1,28 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api, _
 import io
+
 import base64
+import math
+
+from odoo import models, fields
+
 
 class TaskErtracXlsxs(models.AbstractModel):
     _name = 'report.report_timesheet_ertrac.report_task2_ertrac'
     _inherit = 'report.report_xlsx.abstract'
-
+    
     def generate_xlsx_report(self, workbook, data, task_ids):
         report_name = "محضر حصر أعمال"
         # One sheet by partner
         worksheet = workbook.add_worksheet(report_name[:31])
         format_left_to_right = workbook.add_format()
         format_left_to_right.set_reading_order(1)
-
+        
         format_right_to_left = workbook.add_format()
         format_right_to_left.set_reading_order(2)
         cell_format_right = workbook.add_format()
         cell_format_right.set_align('right')
-
+        
         
         worksheet.right_to_left()
         worksheet.set_column('A:A', 5)
@@ -58,7 +62,7 @@ class TaskErtracXlsxs(models.AbstractModel):
         cell_format_row = workbook.add_format({'bold': False, 'align': 'center', 'valign': 'vcenter',
                                                'border': 1})
         cell_format_total = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter',
-                                                  'border': 1, 'fg_color': '#FFC7CE'})
+                                                 'border': 1, 'fg_color': '#FFC7CE'})
         cell_format_total2 = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter',
                                                   'border': 1, 'fg_color': '#C6EFCE'})
         cell_format_header.set_center_across()
@@ -72,104 +76,104 @@ class TaskErtracXlsxs(models.AbstractModel):
         tasks_arranged_increase = []
         tasks_arranged_decrease = []
         tasks_arranged_odd = []
-
+        
         for idx , task in enumerate(task_ids):
             for idxx , timesheet_ids in enumerate(task.timesheet_ids):
-                    if timesheet_ids.line_type == 'increase_line' :
-                          tasks_arranged_increase.append(timesheet_ids)
-                        
+                if timesheet_ids.line_type == 'increase_line' :
+                    tasks_arranged_increase.append(timesheet_ids)
+        
         for idx , task in enumerate(task_ids):
             for idxx , timesheet_ids in enumerate(task.timesheet_ids):
-                    if timesheet_ids.line_type == 'decrease_line' :
-                          tasks_arranged_decrease.append(timesheet_ids)
-                            
+                if timesheet_ids.line_type == 'decrease_line' :
+                    tasks_arranged_decrease.append(timesheet_ids)
+        
         for idx , task in enumerate(task_ids):
             for idxx , timesheet_ids in enumerate(task.timesheet_ids):
-                    if timesheet_ids.line_type == 'odd_line' :
-                          tasks_arranged_odd.append(timesheet_ids)
-                                
-        row_initial = row 
+                if timesheet_ids.line_type == 'odd_line' :
+                    tasks_arranged_odd.append(timesheet_ids)
+        
+        row_initial = row
         # if Increased Line available
         if tasks_arranged_increase:
-             for idxx, timesheet_ids in enumerate(tasks_arranged_increase):
-                     row += 1
-                     col = 0
-                     worksheet.write(row, col, '')
-                     col += 1
-                     worksheet.write(row, col, 'الخط الطالع', cell_format_row)
-                     col += 1
-                     worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
-                     col += 1
-                     worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
-                     col += 1
-                     worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
-             worksheet.merge_range(row_initial+1, 1, row , 1, 'الخط الطالع',cell_format_row)
-             # Final Total
-             row += 1
-             col = 0
-             worksheet.write(row, col, '')
-             col += 1
-             worksheet.write(row, col, 'إجمالي الخط الطالع', cell_format_total)
-             col += 1
-             worksheet.write(row, col, '' ,cell_format_total)
-             col += 1
-             worksheet.write(row, col, '' ,cell_format_total)
-             col += 1
-             worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_increase), cell_format_total)
-        row_initial2 = row 
+            for idxx, timesheet_ids in enumerate(tasks_arranged_increase):
+                row += 1
+                col = 0
+                worksheet.write(row, col, '')
+                col += 1
+                worksheet.write(row, col, 'الخط الطالع', cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
+            worksheet.merge_range(row_initial+1, 1, row , 1, 'الخط الطالع',cell_format_row)
+            # Final Total
+            row += 1
+            col = 0
+            worksheet.write(row, col, '')
+            col += 1
+            worksheet.write(row, col, 'إجمالي الخط الطالع', cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_increase), cell_format_total)
+        row_initial2 = row
         if tasks_arranged_decrease:
-              for idxx, timesheet_ids in enumerate(tasks_arranged_decrease):
-                      row += 1
-                      col = 0
-                      worksheet.write(row, col, '')
-                      col += 1
-                      worksheet.write(row, col, 'الخط النازل', cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
-              worksheet.merge_range(row_initial2+1, 1, row , 1, 'الخط النازل',cell_format_row)
-              # Final Total
-              row += 1
-              col = 0
-              worksheet.write(row, col, '')
-              col += 1
-              worksheet.write(row, col, ' إجمالي الخط النازل', cell_format_total)
-              col += 1
-              worksheet.write(row, col, '' ,cell_format_total)
-              col += 1
-              worksheet.write(row, col, '' ,cell_format_total)
-              col += 1
-              worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_decrease), cell_format_total)
+            for idxx, timesheet_ids in enumerate(tasks_arranged_decrease):
+                row += 1
+                col = 0
+                worksheet.write(row, col, '')
+                col += 1
+                worksheet.write(row, col, 'الخط النازل', cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
+            worksheet.merge_range(row_initial2+1, 1, row , 1, 'الخط النازل',cell_format_row)
+            # Final Total
+            row += 1
+            col = 0
+            worksheet.write(row, col, '')
+            col += 1
+            worksheet.write(row, col, ' إجمالي الخط النازل', cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_decrease), cell_format_total)
         row_initial = row
         if tasks_arranged_odd:
-              for idxx, timesheet_ids in enumerate(tasks_arranged_odd):
-                      row += 1
-                      col = 0
-                      worksheet.write(row, col, '')
-                      col += 1
-                      worksheet.write(row, col, 'الخط المفرد', cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
-                      col += 1
-                      worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
-              worksheet.merge_range(row_initial+1, 1, row , 1, 'الخط المفرد',cell_format_row)
-              # Final Total
-              row += 1
-              col = 0
-              worksheet.write(row, col, '')
-              col += 1
-              worksheet.write(row, col, 'إجمالي الخط المفرد', cell_format_total)
-              col += 1
-              worksheet.write(row, col, '' ,cell_format_total)
-              col += 1
-              worksheet.write(row, col, '' ,cell_format_total)
-              col += 1
-              worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_odd), cell_format_total)
+            for idxx, timesheet_ids in enumerate(tasks_arranged_odd):
+                row += 1
+                col = 0
+                worksheet.write(row, col, '')
+                col += 1
+                worksheet.write(row, col, 'الخط المفرد', cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.from_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.to_km, cell_format_row)
+                col += 1
+                worksheet.write(row, col, timesheet_ids.total_km, cell_format_row)
+            worksheet.merge_range(row_initial+1, 1, row , 1, 'الخط المفرد',cell_format_row)
+            # Final Total
+            row += 1
+            col = 0
+            worksheet.write(row, col, '')
+            col += 1
+            worksheet.write(row, col, 'إجمالي الخط المفرد', cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, '' ,cell_format_total)
+            col += 1
+            worksheet.write(row, col, sum(c.total_km for c in tasks_arranged_odd), cell_format_total)
         tasks_total = tasks_arranged_decrease + tasks_arranged_increase + tasks_arranged_odd
         # Final Total
         row += 1
@@ -183,7 +187,7 @@ class TaskErtracXlsxs(models.AbstractModel):
         worksheet.write(row, col, '' ,cell_format_total2)
         col += 1
         worksheet.write(row, col, math.floor(sum(c.total_km for c in tasks_total)), cell_format_total2)
-        #line total
+        # line total
         row += 1
         worksheet.merge_range(row, 1, row , 5, "بإجمالي مسافة طالع , نازل = %s  كم" % sum(c.total_km for c in tasks_total) , bold_center)
         # Lines user will write in
@@ -197,7 +201,7 @@ class TaskErtracXlsxs(models.AbstractModel):
         worksheet.write(row, 1, "مندوب الشركه", bold_center)
         row += 1
         worksheet.merge_range(row-1, 4, row-1, 5, "مندوب الهيئه", bold_center)
-
+        
         row += 4
         worksheet.merge_range(row, 1, row, 6, "يعتمد / ", bold_center)
         row += 1

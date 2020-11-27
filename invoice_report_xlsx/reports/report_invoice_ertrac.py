@@ -26,14 +26,15 @@ class TaskErtracXlsxs(models.AbstractModel):
         
         worksheet.right_to_left()
         worksheet.set_column('A:A', 5)
-        worksheet.set_column('E:F', 5)
-        worksheet.set_column('I:I', 10)
-        worksheet.set_column('H:H', 5)
-        worksheet.set_column('J:L', 5)
         worksheet.set_column('B:B', 20)
         worksheet.set_column('C:D', 10)
+        worksheet.set_column('E:F', 5)
         worksheet.set_column('G:G', 10)
-        worksheet.set_column('M:M', 10)
+        worksheet.set_column('H:H', 5)
+        worksheet.set_column('I:I', 10)
+        worksheet.set_column('J:J', 10)
+        worksheet.set_column('K:M', 5)
+        worksheet.set_column('N:N', 10)
         bold = workbook.add_format({'bold': True})
         bold.set_font_size(12)
         bold_center = workbook.add_format({'bold': True, 'align': 'center'})
@@ -88,22 +89,36 @@ class TaskErtracXlsxs(models.AbstractModel):
         cell_format_header_wrap = workbook.add_format({'bold': True, 'align': 'center', 'valign': 'vcenter',
                                                        'border': 1, 'fg_color': '#faf200'})
         cell_format_header_wrap.set_text_wrap()
-        
-        worksheet.merge_range(14, 0, 15, 0, 'رقم بند العقد', cell_format_header_wrap)
-        worksheet.merge_range(14, 1, 15, 1, 'بيان مفردات الأعمال', cell_format_header)
-        worksheet.merge_range(14, 2, 15, 2, 'الوحدة', cell_format_header_wrap)
-        worksheet.merge_range(14, 3, 15, 3, 'الكمية', cell_format_header_wrap)
-        worksheet.merge_range(14, 4, 14, 5, 'الثمن بالوحدة', cell_format_header_wrap)
-        worksheet.write(15, 4, 'قرش', cell_format_header_wrap)
-        worksheet.write(15, 5, 'جنية', cell_format_header_wrap)
-        worksheet.merge_range(14, 6, 15, 6, 'النسبة', cell_format_header_wrap)
-        worksheet.merge_range(14, 7, 14, 8, 'تكاليف كل بند', cell_format_header_wrap)
-        worksheet.write(15, 7, 'قرش', cell_format_header_wrap)
-        worksheet.write(15, 8, 'جنية', cell_format_header_wrap)
-        worksheet.merge_range(14, 9, 14, 11, 'المبلغ المصرح بدفعه', cell_format_header_wrap)
-        worksheet.write(15, 9, 'قرش', cell_format_header_wrap)
-        worksheet.merge_range(15, 10, 15, 11, 'جنية', cell_format_header_wrap)
-        worksheet.merge_range(14, 12, 15, 12, 'ملاحظات', cell_format_header)
+        row = 14
+        col = 0
+        worksheet.merge_range(row, col, row+1, col, 'رقم بند العقد', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row+1, col, 'بيان مفردات الأعمال', cell_format_header)
+        col += 1
+        worksheet.merge_range(row, col, row+1, col, 'الوحدة', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row+1, col, 'الكمية', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row, col+1, 'الثمن بالوحدة', cell_format_header_wrap)
+        worksheet.write(row+1, col, 'قرش', cell_format_header_wrap)
+        col += 1
+        worksheet.write(row+1, col, 'جنية', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row+1, col, 'النسبة', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row, col+1, 'تكاليف كل بند', cell_format_header_wrap)
+        worksheet.write(row+1, col, 'قرش', cell_format_header_wrap)
+        col += 1
+        worksheet.write(row+1, col, 'جنية', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row+1, col, 'خصومات', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row, col, row, col+2, 'المبلغ المصرح بدفعه', cell_format_header_wrap)
+        worksheet.write(row+1, col, 'قرش', cell_format_header_wrap)
+        col += 1
+        worksheet.merge_range(row+1, col, row+1, col+1, 'جنية', cell_format_header_wrap)
+        col += 2
+        worksheet.merge_range(row, col, row+1, col, 'ملاحظات', cell_format_header)
         row = 16
         section = 0
         for idx, invoice in enumerate(invoice_ids):
@@ -115,68 +130,114 @@ class TaskErtracXlsxs(models.AbstractModel):
                     
                     subtotal_tuple = math.modf(abs(invoice_line_ids.price_subtotal))
                     allowed_tuple = math.modf(abs(invoice_line_ids.allowed_amount))
+                    # رقم بند العقد
                     col = 0
                     worksheet.write(row,  col, invoice_line_ids.product_id.default_code, cell_format_row_wrap)
+                    # بيان مفردات الأعمال
                     col += 1
                     worksheet.write(row,  col, invoice_line_ids.product_id.name, cell_format_row_wrap)
+                    # الوحده
                     col += 1
                     worksheet.write(row,  col, invoice_line_ids.product_uom_id.name, cell_format_row_wrap)
+                    # الكميه
                     col += 1
                     worksheet.write(row,  col, invoice_line_ids.quantity, cell_format_row_wrap)
+                    # الثمن بالوحده قرش
                     col += 1
                     worksheet.write(row,  col, int(unit_tuple[0]*100), cell_format_row_wrap)
+                    # الثمن بالوحده جنيه
                     col += 1
                     worksheet.write(row,  col, int(unit_tuple[1]), cell_format_row_wrap)
+                    # النسبه
                     col += 1
                     worksheet.write(row,  col, "%s %s" % (abs(invoice_line_ids.rated*100), '%'), cell_format_row_wrap)
+                    # تكاليف كل بند قرش
                     col += 1
                     worksheet.write(row,  col, int(subtotal_tuple[0]*100), cell_format_row_wrap)
+                    # تكاليف كل بند جنيه
                     col += 1
                     worksheet.write(row,  col, int(abs(invoice_line_ids.price_subtotal)), cell_format_row_wrap)
+                    # TODO: الخصومات
                     col += 1
                     worksheet.write(row,  col, '', cell_format_row_wrap)
                     col += 1
+                    worksheet.write(row,  col, '', cell_format_row_wrap)
+                    # المبلغ المسرح بيه
+                    col += 1
                     worksheet.merge_range(row,  col, row, col+1, '', cell_format_row_wrap)
-                    col += 1
-                    col += 1
+                    col += 2
                     disc = ''
                     if invoice_line_ids.disc:
                         disc = abs(invoice_line_ids.disc)
                     else:
                         disc = ''
+                    # الملاحظات
                     worksheet.write(row,  col, disc, cell_format_row)
                     col += 1
                     row += 1
-                elif invoice_line_ids.display_type == 'line_section' and invoice_line_ids.name == 'خصم ضمان اعمال':
+                elif invoice_line_ids.display_type == 'line_section'\
+                        and invoice_line_ids.name in ['خصم ضمان اعمال', 'خصم ايجار ماكينات', 'خصم ضرائب']:
                     t1_tuple = math.modf(abs(invoice.total_line))
                     t2_tuple = math.modf(abs(invoice.ten_perc))
                     t3_tuple = math.modf(abs(invoice.pure))
-                    section =+ 1
-                    worksheet.merge_range(row,  0, row, 3, '', cell_format_row_wrap)
-                    worksheet.merge_range(row,  4, row, 5, 'الاجمالي', cell_format_row_wrap)
-                    worksheet.write(row,  7, math.floor(t1_tuple[0]*100), cell_format_row_wrap)
-                    worksheet.write(row, 8, t1_tuple[1], cell_format_row_wrap)
-                    worksheet.merge_range(row,  9, row, 12, '', cell_format_row_wrap)
+                    col = 0
+                    worksheet.merge_range(row,  col, row, col+3, '', cell_format_row_wrap)
+                    col += 4
+                    worksheet.merge_range(row,  col, row, col+1, 'الاجمالي', cell_format_row_wrap)
+                    # تكاليف كل بند قرش
+                    col += 3
+                    worksheet.write(row,  col, math.floor(t1_tuple[0]*100), cell_format_row_wrap)
+                    # تكاليف كل بند جنيه
+                    col += 1
+                    worksheet.write(row, col, t1_tuple[1], cell_format_row_wrap)
+                    # TODO: الخصومات
+                    col += 1
+                    worksheet.write(row, col, '', cell_format_row_wrap)
+                    col += 1
+                    worksheet.merge_range(row,  col, row, col+3, '', cell_format_row_wrap)
                     
                     row += 1
-                    worksheet.write(row,  0, '', cell_format_row_wrap)
-                    worksheet.write(row,  1, invoice_line_ids.name, cell_format_row_wrap)
-                    worksheet.merge_range(row,  2, row, 4, '', cell_format_row_wrap)
-                    worksheet.write(row,  6, '10%', cell_format_row_wrap)
-                    worksheet.write(row,  7, math.floor(t2_tuple[0]*100), cell_format_row_wrap)
+                    col = 0
+                    worksheet.write(row,  col, '', cell_format_row_wrap)
+                    # خصم ضمان اعمال
+                    col += 1
+                    worksheet.write(row, col, invoice_line_ids.name, cell_format_row_wrap)
+                    col += 1
+                    worksheet.merge_range(row,  col, row, col+2, '', cell_format_row_wrap)
+                    # النسبه
+                    col += 4
+                    worksheet.write(row,  col, '10%', cell_format_row_wrap)
+                    # تكاليف كل بند قرش
+                    col += 1
+                    worksheet.write(row,  col, math.floor(t2_tuple[0]*100), cell_format_row_wrap)
+                    # تكاليف كل بند جنيه
+                    col += 1
                     worksheet.write(row, 8, t2_tuple[1], cell_format_row_wrap)
-                    worksheet.merge_range(row,  9, row, 12, '', cell_format_row_wrap)
+                    # TODO: الخصومات
+                    col += 1
+                    worksheet.write(row, col, '', cell_format_row_wrap)
+                    col += 1
+                    worksheet.merge_range(row, col, row, col + 3, '', cell_format_row_wrap)
                     
-                    row +=1
-                    worksheet.merge_range(row,  0, row, 3, '', cell_format_row_wrap)
-                    worksheet.merge_range(row,  4, row,  5, 'الصافي', cell_format_row_wrap)
-                    worksheet.write(row,  7, math.floor(t3_tuple[0]*100), cell_format_row_wrap)
-                    worksheet.write(row, 8, t3_tuple[1], cell_format_row_wrap)
-                    worksheet.merge_range(row,  9, row, 12, '', cell_format_row_wrap)
                     row += 1
-                
+                    col = 0
+                    worksheet.merge_range(row,  col, row, col+3, '', cell_format_row_wrap)
+                    col += 4
+                    worksheet.merge_range(row,  col, row,  col+1, 'الصافي', cell_format_row_wrap)
+                    # تكاليف كل بند قرش
+                    col += 3
+                    worksheet.write(row, col, math.floor(t3_tuple[0]*100), cell_format_row_wrap)
+                    # تكاليف كل بند جنيه
+                    col += 1
+                    worksheet.write(row, col, t3_tuple[1], cell_format_row_wrap)
+                    # TODO: الخصومات
+                    col += 1
+                    worksheet.write(row, col, '', cell_format_row_wrap)
+                    col += 1
+                    worksheet.merge_range(row, col, row, col + 3, '', cell_format_row_wrap)
+                    row += 1
                 else:
-                    worksheet.merge_range(row,  0, row,  12, invoice_line_ids.name, cell_section_format)
+                    worksheet.merge_range(row,  0, row,  13, invoice_line_ids.name, cell_section_format)
                     row += 1
             
             worksheet.merge_range(row,  7, row,  8, abs(invoice.total_machine_rent), cell_format_row)
