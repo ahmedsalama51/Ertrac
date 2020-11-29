@@ -26,7 +26,7 @@ class TaskErtrackXlsx(models.AbstractModel):
         
         worksheet.right_to_left()
         worksheet.set_column('A:A', 5)
-        worksheet.set_column('B:B', 50)
+        worksheet.set_column('B:B', 80)
         worksheet.set_column('C:X', 10)
         bold = workbook.add_format({'bold': True})
         bold_center = workbook.add_format({'bold': True, 'align': 'center'})
@@ -203,7 +203,7 @@ class TaskErtrackXlsx(models.AbstractModel):
                     elif len(percentages) == 8:
                         wrap = 0
                         for p, percent in enumerate(percentages):
-                            if p == 5 or p == 6 or p == 7 :
+                            if p == 5 or p == 6 or p == 7:
                                 worksheet.merge_range(row, col+wrap, row, col+wrap+1, percent, cell_format_row)
                                 col += 1
                                 wrap += 1
@@ -213,7 +213,7 @@ class TaskErtrackXlsx(models.AbstractModel):
                     elif len(percentages) == 6:
                         wrap = 0
                         for p, percent in enumerate(percentages):
-                            if p != 5 :
+                            if p != 5:
                                 worksheet.merge_range(row, col+wrap, row, col+wrap+1, percent, cell_format_row)
                                 col += 1
                                 wrap += 1
@@ -277,9 +277,9 @@ class TaskErtrackXlsx(models.AbstractModel):
         worksheet.merge_range(row+1, 9, row+1, 14, "م/ مدحت عيد صديق", bold_center)
         
         row += 4
-        worksheet.merge_range(row, 3,row, 8, "يعتمد / ", bold_right)
+        worksheet.merge_range(row, 3, row, 8, "يعتمد / ", bold_right)
         row += 1
-        worksheet.merge_range(row, 3,row, 8, "رئيس مجلس الاداره والعضو المنتدب ", bold_right)
+        worksheet.merge_range(row, 3, row, 8, "رئيس مجلس الاداره والعضو المنتدب ", bold_right)
         row += 1
-        worksheet.merge_range(row, 3,row, 8, "مهندس / مصطفى عبداللطيف أبوالمكارم ", bold_right)
+        worksheet.merge_range(row, 3, row, 8, "مهندس / مصطفى عبداللطيف أبوالمكارم ", bold_right)
         # Ahmed Salama Code End.

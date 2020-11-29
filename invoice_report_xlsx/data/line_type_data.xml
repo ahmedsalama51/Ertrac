@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="line_type_1" model="line.type">
+            <field name="name">بيان مفردات الاعمال</field>
+        </record>
+        <record id="line_type_2" model="line.type">
+            <field name="name">خصم ضمان اعمال 10%</field>
+            <field name="percentage">10</field>
+            <field name="discount">1</field>
+        </record>
+        <record id="line_type_3" model="line.type">
+            <field name="name">خصم ضمان اعمال 5%</field>
+            <field name="percentage">5</field>
+            <field name="discount">1</field>
+        </record>
+        <record id="line_type_4" model="line.type">
+            <field name="name">خصم ايجار ماكينات</field>
+            <field name="discount">1</field>
+        </record>
+    </data>
+</odoo>

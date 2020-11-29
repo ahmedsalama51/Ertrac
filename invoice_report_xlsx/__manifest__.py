@@ -19,11 +19,18 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['sale','sale_management','account','account_accountant','project','hr_timesheet','sale_timesheet','report_xlsx','invoice_report'],
+    'depends': ['sale', 'sale_management', 'account_accountant',
+                'project', 'hr_timesheet', 'sale_timesheet', 'report_xlsx', 'invoice_report'],
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
+        
+        'data/line_type_data.xml',
+        
+        'views/sale_order_view_changes.xml',
+        'views/account_invoice_view_changes.xml',
+        
         'reports/reports.xml',
     ],
     # only loaded in demonstration mode
