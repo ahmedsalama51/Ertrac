@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Invoice Report Xlsx",
+    'name': "Invoice Report Xlsx(V2)",
 
     'summary': """
         Create invoice Report in Xlsx Sheet""",

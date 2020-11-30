@@ -18,5 +18,16 @@
             <field name="name">خصم ايجار ماكينات</field>
             <field name="discount">1</field>
         </record>
+        <record id="line_type_5" model="line.type">
+            <field name="name"> أعمال التجديدات</field>
+        </record>
+        <record id="line_type_5" model="line.type">
+            <field name="name"> أعمال الصيانة</field>
+        </record>
+        <record id="line_type_6" model="line.type">
+            <field name="name"> ضريبه 14%</field>
+            <field name="percentage">14</field>
+            <field name="tax">1</field>
+        </record>
     </data>
 </odoo>

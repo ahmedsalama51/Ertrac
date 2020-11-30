@@ -8,10 +8,22 @@
             <field name="inherit_id" ref="sale.view_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='order_line']//form//field[@name='product_id']" position="after">
+                    <label for="line_type_id"/>
+                    <div class="o_row">
+                        <button name="get_line_amount" type="object"
+                            help="Press to compute line amount"
+                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', '!=', 'draft')]}"
+                            class="btn btn-warning" icon="fa-refresh"/>
+                    </div>
                     <field name="line_type_id"/>
+
                 </xpath>
                 <xpath expr="//field[@name='order_line']//tree//field[@name='name']" position="after">
                     <field name="line_type_id"/>
+                    <button name="get_line_amount" type="object"
+                            help="Press to compute line amount"
+                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', '!=', 'draft')]}"
+                            class="btn btn-warning" icon="fa-refresh"/>
                 </xpath>
 
             </field>
