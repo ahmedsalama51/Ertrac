@@ -12,7 +12,7 @@
                     <div class="o_row">
                         <button name="get_line_amount" type="object"
                             help="Press to compute line amount"
-                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', '!=', 'draft')]}"
+                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', 'in', ('done', 'cancel'))]}"
                             class="btn btn-warning" icon="fa-refresh"/>
                     </div>
                     <field name="line_type_id"/>
@@ -22,7 +22,7 @@
                     <field name="line_type_id"/>
                     <button name="get_line_amount" type="object"
                             help="Press to compute line amount"
-                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', '!=', 'draft')]}"
+                            string="Compute" attrs="{'invisible':['|',('line_type_id', '=', False),('state', 'in', ('done', 'cancel'))]}"
                             class="btn btn-warning" icon="fa-refresh"/>
                 </xpath>
 
