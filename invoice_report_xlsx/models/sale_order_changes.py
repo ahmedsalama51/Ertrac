@@ -16,7 +16,7 @@ class LineType(models.Model):
 class SaleOrderLineInherit(models.Model):
 	_inherit = 'sale.order.line'
 	
-	line_type_id = fields.Many2one('line.type', "Type", required=True)
+	line_type_id = fields.Many2one('line.type', "Type")
 	
 	def _prepare_invoice_line(self):
 		res = super(SaleOrderLineInherit, self)._prepare_invoice_line()
